@@ -1,35 +1,29 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import { useState, useEffect } from 'react';
+import key from '../key/key';
+import Header from './components/Header';
+import Gameboard from './components/GameBoard';
 
-function App() {
-  const [count, setCount] = useState(0)
+export default function App() {
+  const score = 1;
+  const highScore = 8;
+  const [cats, setCats] = useState([]);
+
+  useEffect(() => {
+    fetch(`https://api.thecatapi.com/v1/images/search?limit=48&api_key=${key}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`Error: ${res.status}`);
+        }
+        return res.json();
+      })
+      .then((data) => setCats(data)) //need to filter unique cats
+      .catch((error) => console.log(error));
+  }, []);
 
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <Header score={score} highScore={highScore} />
+      <Gameboard cats={cats} />
     </>
-  )
+  );
 }
-
-export default App
