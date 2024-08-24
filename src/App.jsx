@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react';
-import key from '../key/key';
 import Header from './components/Header';
 import Gameboard from './components/GameBoard';
 import GameOver from './components/GameOver';
@@ -15,7 +14,7 @@ export default function App() {
   useEffect(() => {
     if (!gameOver) {
       fetch(
-        `https://api.thecatapi.com/v1/images/search?limit=24&api_key=${key}`
+        `https://api.thecatapi.com/v1/images/search?limit=24&api_key=live_yK3DMPXGwxjkLiTpDirHXPtuHDHBqLdH1uKREMaehhhX5KY1TONDWkfunWRIgTll`
       )
         .then((res) => {
           if (!res.ok) {
