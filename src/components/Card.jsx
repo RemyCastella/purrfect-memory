@@ -1,11 +1,9 @@
 import React from 'react';
 
-export default function Card({ cats }) {
-  const cat = cats[Math.floor(Math.random() * cats.length)];
-
+export default function Card({ cat, handleCardClick }) {
   return (
     <div className="card">
-      <img src={cat.url} alt="cat" />
+      <img src={cat.url} alt="cat" onClick={() => handleCardClick(cat.id)} />
     </div>
   );
 }
