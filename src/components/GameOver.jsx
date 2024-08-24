@@ -1,9 +1,10 @@
 import React from 'react';
 import derpyCat from '/derpyCat.jpg';
 
-export default function GameOver({ setGameOver, setScore }) {
+export default function GameOver({ setGameOver, setScore, setCats }) {
   function handlePlayAgain() {
     setScore(0);
+    setCats([]);
     setGameOver(false);
   }
 

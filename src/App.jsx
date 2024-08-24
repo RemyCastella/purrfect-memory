@@ -41,7 +41,11 @@ export default function App() {
     <>
       <Header score={score} highScore={highScore} />
       {gameOver ? (
-        <GameOver setGameOver={setGameOver} setScore={setScore} />
+        <GameOver
+          setGameOver={setGameOver}
+          setScore={setScore}
+          setCats={setCats}
+        />
       ) : (
         <Gameboard
           cats={cats}
